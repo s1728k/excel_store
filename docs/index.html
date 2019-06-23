@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="E:/GitHub/excel_store/docs" >
+  <base href="https://s1728k.github.io/excel_store" >
 	<title>Excel Store</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Strait' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <style>
+  body {
+      font-family:Strait;
+  }
   .checked {
     color: orange;
   }
@@ -182,7 +186,6 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/submit_new_product.html"><i class=" fa fa-cloud-upload"></i> Submit New Product</a></li>
             <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i> Cart</a></li>
             <li><a href="javascript:void(0)"><i class="fa fa-user-plus"></i> Subscribe</a></li>
             <li><a href="javascript:void(0)"><i class="fa fa-sign-in"></i> Subscriber Login</a></li>
@@ -193,7 +196,6 @@
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="/submit_new_product.html"><i class=" fa fa-cloud-upload"></i> Submit New Product</a>
   <a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i> Cart</a>
   <a href="javascript:void(0)"><i class="fa fa-user-plus"></i> Subscribe</a>
   <a href="javascript:void(0)"><i class="fa fa-sign-in"></i> Subscriber Login</a>
@@ -231,11 +233,12 @@
 
 <div class="container-fluid" id="htmlProducts">
   <div class="row" id="htmlProduct">
-    <div class="col-md-3">
+    <div class="col-md-3" onclick="product_description()">
       <div class="htmlProduct text-center">
         <img src="https://via.placeholder.com/300" style="width: 100%" />
         <h3>%name%</h3>
         <p>Implementation of vlookups in vba..</p>
+        <h3>Rs. 1000/-</h3>
         <div class="row">
           <div class="col-xs-6" style="font-size: 10px">
             <p style="font-size: 10px"><strong>Category: </strong>Software</p>
@@ -298,6 +301,10 @@ function closeNav() {
     }
   };
   $("#htmlProducts").html(htmlProducts);
+
+  function product_description(){
+    location.replace('https://s1728k.github.io/excel_store/product_description');
+  }
 </script>
 </body>
 </html>
