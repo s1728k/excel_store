@@ -39,7 +39,7 @@
     position: absolute;
     left:0px;
     top:0px;
-    z-index: 1;
+    /*z-index: 1;*/
     width: 400px;
     height: 400px;
   }
@@ -77,7 +77,7 @@
     margin: 8px 0px 0px 0px;
     text-align: center;
     width: 55.5%;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
   }
 
@@ -86,7 +86,7 @@
     margin: 8px 0px 0px 0px;
     text-align: center;
     width: 42.5%;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
   }
 
@@ -245,7 +245,7 @@
   }
 </script>
 </head>
-<body>
+<body style="width: 100%; height: 100vh; overflow:auto" onscroll="onscroll(event)">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -282,7 +282,7 @@
 <div class="container-fluid">
   <div id="imgDisplay" class="row">
     <div class="col-md-5">
-      <div class="row">
+      <div class="row" id="bar">
         <div class="col-xs-2">
           <div class="sideImages text-center">
             <img src="https://via.placeholder.com/300" style="width: 100%" />
@@ -304,7 +304,6 @@
       </div>
     </div>
     <div class="col-md-7" id="description_container">
-      <div id="myresult" class="img-zoom-result"></div>
       <h2>Vlookup Excel2</h2>
       <div class="row">
         <div class="col-md-12">
@@ -398,8 +397,70 @@
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
           </div>
+
+          <div class="media">
+            <div class="media-left">
+              <img src="https://via.placeholder.com/60" class="media-object" style="width:60px">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">John Doe</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+
+          <div class="media">
+            <div class="media-left">
+              <img src="https://via.placeholder.com/60" class="media-object" style="width:60px">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">John Doe</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+
+          <div class="media">
+            <div class="media-left">
+              <img src="https://via.placeholder.com/60" class="media-object" style="width:60px">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">John Doe</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+
+          <div class="media">
+            <div class="media-left">
+              <img src="https://via.placeholder.com/60" class="media-object" style="width:60px">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">John Doe</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+
+          <div class="media">
+            <div class="media-left">
+              <img src="https://via.placeholder.com/60" class="media-object" style="width:60px">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">John Doe</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+
         </div>
       </div>
+      <div id="myresult" class="img-zoom-result"></div>
     </div>
   </div>
 </div>  
@@ -422,5 +483,18 @@ function closeNav() {
   $("#myresult").toggleClass("hidden");
 </script>
 
+<script>
+    function onscroll(event){
+      if (window.matchMedia('(min-width: 992px)').matches) {
+          var st = $(this).scrollTop();
+          if($("#imgDisplay").height() > $("#bar").height() + st){
+            $("#bar").css('margin-top', st);
+          }
+          if($("#imgDisplay").height() > $("#myresult").height() + st){
+            $("#myresult").css('margin-top', st);
+          }
+      }
+    }
+</script>
 </body>
 </html>
