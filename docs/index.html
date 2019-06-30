@@ -186,7 +186,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+            <li><a href="javascript:void(0)" onclick="route('cart')"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">5</span></a></li>
             <li><a href="javascript:void(0)"><i class="fa fa-user-plus"></i> Subscribe</a></li>
             <li><a href="javascript:void(0)"><i class="fa fa-sign-in"></i> Subscriber Login</a></li>
         </ul>
@@ -196,7 +196,7 @@
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i> Cart</a>
+  <a href="javascript:void(0)" onclick="route('cart')"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">5</span></a>
   <a href="javascript:void(0)"><i class="fa fa-user-plus"></i> Subscribe</a>
   <a href="javascript:void(0)"><i class="fa fa-sign-in"></i> Subscriber Login</a>
 </div>
@@ -233,7 +233,7 @@
 
 <div class="container-fluid" id="htmlProducts">
   <div class="row" id="htmlProduct">
-    <div class="col-md-3" onclick="product_description()">
+    <div class="col-md-3" onclick="route('product_description')">
       <div class="htmlProduct text-center">
         <img src="https://via.placeholder.com/300" style="width: 100%" />
         <h3>%name%</h3>
@@ -286,6 +286,10 @@ function closeNav() {
 </script>
 
 <script>
+  $.post("")
+</script>
+
+<script>
   var products = [{"name":"fsdfdsfsdfsdfsdfsdff f f fsdfsdfsdfsdfsdfsdfsdfsdf Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"},{"name":"Vlookup Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"}];
   var htmlProducts = "";
   var htmlProduct = $("#htmlProduct").html();
@@ -302,8 +306,8 @@ function closeNav() {
   };
   $("#htmlProducts").html(htmlProducts);
 
-  function product_description(){
-    window.location.href = 'https://s1728k.github.io/excel_store/product_description';
+  function route(path){
+    window.location.href = 'https://s1728k.github.io/excel_store/'+path+'.html';
   }
 </script>
 </body>
