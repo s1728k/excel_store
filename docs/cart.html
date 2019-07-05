@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- <base href="https://s1728k.github.io/excel_store" > -->
-  <base href="http://localhost:8019" >
+  <base href="https://s1728k.github.io/excel_store" >
 	<title>Excel Store</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -344,9 +343,12 @@ function closeNav() {
   // };
   // $("#htmlProducts").html(cartHeading + htmlProducts);
 
-  $("base").prop('href',window.location.protocol + '//' + window.location.host);
-  function route(path){
-    window.location.href = path + (($("base").prop('href')).indexOf('github')>0?'':'.html');
+  if(window.location.hostname == 'localhost'){
+    $("base").prop('href',window.location.protocol + '//' + window.location.host);
+  }
+  function route(path, param = null){
+    localStorage.setItem('param',param);
+    window.location.href = path + ((window.location.hostname == 'localhost'?'.html':'');
   }
 
   $(".plus").on("click", function(){
