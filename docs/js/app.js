@@ -144,16 +144,14 @@ $(document).ready(function() {
 
 function routing(){
 	var path = window.location.pathname;
-	var fe = ((window.location.hostname == 'localhost')?'.html':'');
+  path = path.replace('.html','');
+  path = path.replace('/excel_store','');
 
-  console.log(path);
-  console.log(fe);
-  
-	if(path == '' || path == '/' || path == '/index' + fe){
+	if(path == '' || path == '/' || path == '/index'){
 		excel_product_item();
-	}else if(path == '/cart' + fe){
+	}else if(path == '/cart'){
 		cart_list();
-	}else if(path == '/product_description' + fe){
+	}else if(path == '/product_description'){
 		product_description();
 	}
 }
