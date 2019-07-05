@@ -335,11 +335,11 @@ function closeNav() {
   // };
   // $("#htmlProducts").html(htmlProducts);
 
-  if(window.location.hostname == 'localhost'){
-    $("base").prop('href',window.location.protocol + '//' + window.location.host);
-  }else{
-    $("base").prop('href','https://s1728k.github.io/excel_store');
-  }
+  // if(window.location.hostname == 'localhost'){
+  //   $("base").prop('href',window.location.protocol + '//' + window.location.host);
+  // }else{
+  //   $("base").prop('href','https://s1728k.github.io/excel_store');
+  // }
   function route(path, param = null){
     localStorage.setItem('param',param);
     window.location.href = path + ((window.location.hostname == 'localhost')?'.html':'');
