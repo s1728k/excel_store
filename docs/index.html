@@ -342,7 +342,8 @@ function closeNav() {
   // }
   function route(path, param = null){
     localStorage.setItem('param',param);
-    window.location.href = path + ((window.location.hostname == 'localhost')?'.html':'');
+    window.location.href = path + '.html';
+    // window.location.href = path + ((window.location.hostname == 'localhost')?'.html':'');
   }
 </script>
 </body>
