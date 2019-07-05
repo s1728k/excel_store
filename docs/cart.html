@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="https://s1728k.github.io/excel_store" >
+  <!-- <base href="https://s1728k.github.io/excel_store" > -->
+  <base href="http://localhost:8019" >
 	<title>Excel Store</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -313,20 +314,39 @@ function closeNav() {
 </script>
 
 <script>
-  var products = [{"name":"fsdfdsfsdfsdfsdfsdff f f fsdfsdfsdfsdfsdfsdfsdfsdf Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"},{"name":"Vlookup Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"}];
-  var htmlProducts = "";
-  var htmlProduct = $("#htmlProduct").prop('outerHTML');
-  var cartHeading = $("#cartHeading").prop('outerHTML');
-  cartHeading = cartHeading.replace("%n%",products.length)
-  for (var i = 0; i < products.length; i++) {
-    var t = htmlProduct;
-    t = t.replace("%name%", products[i].name);
-    htmlProducts = htmlProducts + t;
-  };
-  $("#htmlProducts").html(cartHeading + htmlProducts);
+  $.get("https://honeyweb.org/api/22", function(data, status){
+    if(status = "success"){
+      var products = data;
+      var htmlProducts = "";
+      var htmlProduct = $("#htmlProduct").prop('outerHTML');
+      var cartHeading = $("#cartHeading").prop('outerHTML');
+      cartHeading = cartHeading.replace("%n%",products.length)
+      for (var i = 0; i < products.length; i++) {
+        var t = htmlProduct;
+        t = t.replace("%name%", products[i].name);
+        htmlProducts = htmlProducts + t;
+      };
+      $("#htmlProducts").html(cartHeading + htmlProducts);
+    }
+  });
+</script>
 
+<script>
+  // var products = [{"name":"fsdfdsfsdfsdfsdfsdff f f fsdfsdfsdfsdfsdfsdfsdfsdf Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"},{"name":"Vlookup Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"}];
+  // var htmlProducts = "";
+  // var htmlProduct = $("#htmlProduct").prop('outerHTML');
+  // var cartHeading = $("#cartHeading").prop('outerHTML');
+  // cartHeading = cartHeading.replace("%n%",products.length)
+  // for (var i = 0; i < products.length; i++) {
+  //   var t = htmlProduct;
+  //   t = t.replace("%name%", products[i].name);
+  //   htmlProducts = htmlProducts + t;
+  // };
+  // $("#htmlProducts").html(cartHeading + htmlProducts);
+
+  $("base").prop('href',window.location.protocol + '//' + window.location.host);
   function route(path){
-    window.location.href = 'https://s1728k.github.io/excel_store/'+path+'.html';
+    window.location.href = path + (($("base").prop('href')).indexOf('github')>0?'':'.html');
   }
 
   $(".plus").on("click", function(){

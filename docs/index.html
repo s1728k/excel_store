@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="https://s1728k.github.io/excel_store" >
+  <!-- <base href="https://s1728k.github.io/excel_store" > -->
+  <base href="http://localhost:8019" >
 	<title>Excel Store</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -233,23 +234,19 @@
 
 <div class="container-fluid" id="htmlProducts">
   <div class="row" id="htmlProduct">
-    <div class="col-md-3" onclick="route('product_description')">
+    <div class="col-md-3" onclick="route('product_description', '%id%')">
       <div class="htmlProduct text-center">
-        <img src="https://via.placeholder.com/300" style="width: 100%" />
+        %image%
         <h3>%name%</h3>
-        <p>Implementation of vlookups in vba..</p>
-        <h3>Rs. 1000/-</h3>
+        <p>%excerpt%</p>
+        <h3>Rs. %price%/-</h3>
         <div class="row">
           <div class="col-xs-6" style="font-size: 10px">
-            <p style="font-size: 10px"><strong>Category: </strong>Software</p>
+            <p style="font-size: 10px"><strong>Category: </strong>%category%</p>
           </div>
           <div class="col-xs-6" style="font-size: 10px">
             <span class="heading">User Rating</span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
+            %rating%
           </div>
         </div>
         <!-- <button class="btn btn-primary"><i class="fa fa-download"></i> Download</button> -->
@@ -286,28 +283,63 @@ function closeNav() {
 </script>
 
 <script>
-  $.post("")
+  var htmlProducts = "";
+  var htmlProduct = $("#htmlProduct").html();
+  $("#htmlProduct").html('');
+  $.get("https://honeyweb.org/api/22", function(data, status){
+    if(status = "success"){
+      var products = data;
+      for (var i = 0; i < products.length; i++) {
+        if(i%4==0){
+          htmlProducts = htmlProducts + '<div class="row">';
+        }
+        var t = htmlProduct;
+        t = t.replace("%id%", products[i].id);
+        t = t.replace("%name%", products[i].title);
+        t = t.replace("%excerpt%", products[i].excerpt);
+        t = t.replace("%price%", products[i].price);
+        t = t.replace("%category%", products[i].category);
+        var rhtml = "";
+        for (var j = products[i].rating - 1; j >= 0; j--) {
+          rhtml = rhtml + '<span class="fa fa-star checked"></span>';
+        };
+        for (var j = 5 - products[i].rating - 1; j >= 0; j--) {
+          rhtml = rhtml + '<span class="fa fa-star"></span>';
+        };
+        t = t.replace("%rating%", rhtml);
+        var images = JSON.parse(products[i].images);
+        t = t.replace("%image%", '<img src="'+images[0]+'" alt="image" style="width: 100%" />');
+        htmlProducts = htmlProducts + t;
+        if(i%4==3){
+          htmlProducts = htmlProducts + '</div>';
+        }
+      };
+      $("#htmlProducts").html(htmlProducts);
+    }
+  });
 </script>
 
 <script>
-  var products = [{"name":"fsdfdsfsdfsdfsdfsdff f f fsdfsdfsdfsdfsdfsdfsdfsdf Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"},{"name":"Vlookup Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"}];
-  var htmlProducts = "";
-  var htmlProduct = $("#htmlProduct").html();
-  for (var i = 0; i < products.length; i++) {
-    if(i%4==0){
-      htmlProducts = htmlProducts + '<div class="row">';
-    }
-    var t = htmlProduct;
-    t = t.replace("%name%", products[i].name);
-    htmlProducts = htmlProducts + t;
-    if(i%4==3){
-      htmlProducts = htmlProducts + '</div>';
-    }
-  };
-  $("#htmlProducts").html(htmlProducts);
+  // var products = [{"name":"fsdfdsfsdfsdfsdfsdff f f fsdfsdfsdfsdfsdfsdfsdfsdf Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"},{"name":"Vlookup Excel1"},{"name":"Vlookup Excel2"},{"name":"Vlookup Excel3"},{"name":"Vlookup Excel4"}];
+  // var htmlProducts = "";
+  // var htmlProduct = $("#htmlProduct").html();
+  // for (var i = 0; i < products.length; i++) {
+  //   if(i%4==0){
+  //     htmlProducts = htmlProducts + '<div class="row">';
+  //   }
+  //   var t = htmlProduct;
+  //   t = t.replace("%name%", products[i].name);
+  //   htmlProducts = htmlProducts + t;
+  //   if(i%4==3){
+  //     htmlProducts = htmlProducts + '</div>';
+  //   }
+  // };
+  // $("#htmlProducts").html(htmlProducts);
 
-  function route(path){
-    window.location.href = 'https://s1728k.github.io/excel_store/'+path+'.html';
+  $("base").prop('href',window.location.protocol + '//' + window.location.host);
+  function route(path, param = null){
+    localStorage.setItem('param',param);
+    window.location.href = path + (($("base").prop('href')).indexOf('github')>0?'':'.html');
   }
 </script>
 </body>

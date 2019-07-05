@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="https://s1728k.github.io/excel_store" >
+  <!-- <base href="https://s1728k.github.io/excel_store" > -->
+  <base href="http://localhost:8019" >
 	<title>Excel Store</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -295,16 +296,7 @@
   <div id="imgDisplay" class="row">
     <div class="col-md-5" id="imgDisplay2">
       <div class="row" id="bar">
-        <div class="col-xs-2">
-          <div class="sideImages text-center">
-            <img src="https://via.placeholder.com/300" style="width: 100%" />
-          </div>
-          <div class="sideImages text-center">
-            <img src="https://via.placeholder.com/300" style="width: 100%" />
-          </div>
-          <div class="sideImages text-center">
-            <img src="https://via.placeholder.com/300" style="width: 100%" />
-          </div>
+        <div class="col-xs-2" id="sideImagesContainer">
         </div>
         <div class="col-xs-10 text-center">
           <div class="htmlProduct text-center img-zoom-container">
@@ -488,6 +480,22 @@ function closeNav() {
 </script>
 
 <script>
+  var sideImagesContainer = '<div class="sideImages text-center"><img src="%image%" style="width: 100%" /></div>';
+  $.get("https://honeyweb.org/api/23/"+localStorage.getItem('param'),function(data, status){
+    if(status == "success"){
+      var images = JSON.parse(data.images);
+      console.log(images);
+      var sihtml = "";
+      for (var i = images.length - 1; i >= 0; i--) {
+        sihtml = sihtml + sideImagesContainer.replace("%image%", images[i]);
+      }
+      console.log(sihtml);
+      $("#sideImagesContainer").html(sihtml);
+    }
+  });
+</script>
+
+<script>
   imageZoom("myimage", "myresult"); 
   $(".img-zoom-container").hover(function(){
     $("#myresult").toggleClass("hidden");
@@ -510,8 +518,9 @@ function closeNav() {
 </script>
 
 <script>
+  $("base").prop('href',window.location.protocol + '//' + window.location.host);
   function route(path){
-    window.location.href = 'https://s1728k.github.io/excel_store/'+path+'.html';
+    window.location.href = path + (($("base").prop('href')).indexOf('github')>0?'':'.html');
   }
 </script>
 </body>
