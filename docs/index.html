@@ -336,10 +336,12 @@ function closeNav() {
   // $("#htmlProducts").html(htmlProducts);
 
   if(window.location.hostname == 'localhost'){
+    console.log('fdsfsdfsdf');
     $("base").prop('href',window.location.protocol + '//' + window.location.host);
   }
   function route(path, param = null){
     localStorage.setItem('param',param);
+    console.log(path + ((window.location.hostname == 'localhost')?'.html':''));
     window.location.href = path + ((window.location.hostname == 'localhost')?'.html':'');
   }
 </script>
