@@ -146,6 +146,9 @@ function routing(){
 	var path = window.location.pathname;
 	var fe = ((window.location.hostname == 'localhost')?'.html':'');
 
+  console.log(path);
+  console.log(fe);
+  
 	if(path == '' || path == '/' || path == '/index' + fe){
 		excel_product_item();
 	}else if(path == '/cart' + fe){
